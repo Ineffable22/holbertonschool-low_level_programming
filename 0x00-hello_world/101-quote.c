@@ -6,10 +6,10 @@
  * Return: Always 0 (Success)
  */
 
-# define TEXT printf("and that piece of art is useful\" - Dora Korpar, 2015-10-19\n")
+#define T puts("and that piece of art is useful\" - Dora Korpar, 2015-10-19\n")
 
 int main(void)
 {
-	TEXT;
+	T;
 	return (0);
 }

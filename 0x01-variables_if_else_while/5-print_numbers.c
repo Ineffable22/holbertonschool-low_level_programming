@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - prints the alphabet in lowercase,except for the letter q and e
+ * main - print 0123456789
  * followed by a new line
  * Return: Always 0 (Success)
  */
@@ -11,7 +11,7 @@ int main(void)
 	int x;
 
 	x = 48;
-	while (x<58)
+	while (x < 58)
 	{
 		putchar(x);
 		x++;

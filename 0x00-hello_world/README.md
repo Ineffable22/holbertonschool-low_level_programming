@@ -1,7 +1,7 @@
 # 0x00-hello_world - C
 
 ## Requirements:
-###C
+### C
 - Allowed editors: `vi`, `vim`, `emacs`.
 - All your files will be compiled on Ubuntu 20.04 LTS using `gcc`, using the options `-- Wall -Werror -Wextra -pedantic -std=gnu89`.
 - All your files should end with a new line.
@@ -11,7 +11,7 @@
 - You are not allowed to use `system`.
 - Your code should use the `Betty` style. It will be checked using `betty-style.pl` and `betty-doc.pl`.
 
-###Shell Scripts
+### Shell Scripts
 - Allowed editors: `vi`, `vim`, `emacs`
 - All your scripts will be tested on Ubuntu 20.04 LTS
 - All your scripts should be exactly two lines long (`$ wc -l file` should print 2)
@@ -24,7 +24,7 @@ Commands used:
 - `puts`
 - `putchar`
 
-##Files
+## Files
 ### 0-preprocessor
 Writes a script that runs a C file through the preprocessor and save the result into another file.
 - The C file name will be saved in the variable `$CFILE`.
@@ -64,7 +64,7 @@ Writes a C program that prints the size of various types on the computer it is c
 - You should produce the exact same output as in the example.
 - Warnings are allowed.
 - Your program should return `0`.
-- You might have to install the package `libc6-dev-i386` on your Linux (Vagrant) to test the `-m32` gcc option.
+- You might have to install the package `libc6-dev-i386` on your Linux (Vagrant) to test the `-m32` `gcc` option.
 
 ### 100-intel
 Writes a script that generates the assembly code (Intel syntax) of a C code and save it in an output file.
@@ -77,4 +77,3 @@ Writes a C program that prints exactly `and that piece of art is useful" - Dora 
 - You are not allowed to use any functions listed in the NAME section of the man (3) `printf` or man (3) `puts`.
 - Your program should return 1.
 - Your program should compile without any warnings when using the `-Wall` `gcc` option.
-

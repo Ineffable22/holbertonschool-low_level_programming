@@ -35,6 +35,8 @@ void print_to_98(int n)
 				_putchar((n / 10) + 48);
 				_putchar((n % 10) + 48);
 			}
+			if (n == 98)
+				break;
 			_putchar(44);
 			_putchar(32);
 			n--;

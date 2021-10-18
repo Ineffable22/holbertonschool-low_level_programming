@@ -83,8 +83,8 @@ FYI: The standard library provides a similar function: `atoi`. Run `man atoi` to
 
 ### 101-keygen.c
 Generates random valid passwords for the program [101-crackme](https://github.com/holbertonschool/0x04.c).
-- It is allowed to use the standard library
-- It is does not have to pass the betty-style tests (you still need to pass the betty-doc tests)
+- It is allowed to use the standard library.
+- It is does not have to pass the betty-style tests (you still need to pass the betty-doc tests).
 - Use man `srand`, `rand`, `time`.
 - `gdb` and `objdump` can help.
 

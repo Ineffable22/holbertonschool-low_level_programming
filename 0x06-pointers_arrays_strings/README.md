@@ -92,10 +92,10 @@ Prints an integer.
 - It is not allowed to hard-code special values.
 
 ### 102-magic.c
-Adds one line to [this code](https://github.com/holbertonschool/make_magic_happen/blob/master/magic.c), so that the program prints a[2] = 98, followed by a new line.
+Adds one line to [this code](https://github.com/holbertonschool/make_magic_happen/blob/master/magic.c), so that the program prints `a[2] = 98`, followed by a new line.
 - It is not allowed to use the variable `a` in your new line of code.
 - It is are not allowed to modify the variable `p`.
-- Only write one statement.
+- Only writes one statement.
 - It is not allowed to use `,`.
 - It is not allowed to code anything else than the line of expected line of code at the expected line.
 - The code was written on line 19, before the `;`.

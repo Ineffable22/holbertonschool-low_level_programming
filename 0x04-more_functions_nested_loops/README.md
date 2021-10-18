@@ -94,7 +94,9 @@ Prints a triangle, followed by a new line.
 Finds and prints the largest prime factor of the number `612852475143`, followed by a new line.
 - It is allowed to use the standard library.
 - The program will be compiled with this command: `gcc -Wall -pedantic -Werror -Wextra -std=gnu89 100-prime_factor.c -o 100-prime_factor -lm`.
+
 Example:
+
 - The prime factors of `1231952` are `2`, `2`, `2`, `2`, `37` and `2081`.
 
 ### 101-print_number.c

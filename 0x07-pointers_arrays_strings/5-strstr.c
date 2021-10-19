@@ -10,8 +10,8 @@ char *_strstr(char *haystack, char *needle)
 {
 	int y = 0;
 
-        for (;*haystack != 0; haystack++)
-        {
+	for (; *haystack != 0; haystack++)
+	{
 		if (*haystack == *(needle + y))
 		{
 			for (y = 0; needle[y] != 0; y++)
@@ -22,6 +22,6 @@ char *_strstr(char *haystack, char *needle)
 				}
 			}
 		}
-        }
-        return (0);
+	}
+	return (0);
 }

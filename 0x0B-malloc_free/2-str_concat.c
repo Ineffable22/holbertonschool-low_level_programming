@@ -26,10 +26,10 @@ char *str_concat(char *s1, char *s2)
 	for (i = 0; i < len1; i++)
 		*(p + i) = *(s1 + i);
 
-	for (j = i, i = 0; j < len2; j++, i++)
-		*(p + j) = *(s2 + i);
+	for (j = 0; j < len2; j++)
+		*(p + i + j) = *(s2 + j);
 
-	*(p + j) = 0;
+	*(p + i + j) = 0;
 
 	return (p);
 }

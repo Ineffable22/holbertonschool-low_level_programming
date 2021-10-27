@@ -1,5 +1,32 @@
 #include "main.h"
 #include <stdlib.h>
+
+/**
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
+ *
+ * Return: number of words
+ */
+int count_word(char *s)
+{
+	int flag, c, w;
+
+	flag = 0;
+	w = 0;
+
+	for (c = 0; s[c] != '\0'; c++)
+	{
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
+	}
+
+	return (w);
+}
 /**
  * **strtow - splits a string into words
  * @str: string to split
@@ -9,51 +36,42 @@
  */
 char **strtow(char *str)
 {
-	int len1 = 0, len2 = 0, f, i, k = 0, start, end, m = 0;
-	char **p, *q;
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
 
-	if (str == NULL)
+	while (*(str + len))
+		len++;
+	words = count_word(str);
+	if (words == 0)
 		return (NULL);
-	while (*(str + len1))
-	{
-		if (*(str + len1) == 32)
-		{
-			f = 0;
-		}
-		else if (f == 0)
-		{
-			f = 1;
-			len2++;
-		}
-		len1++;
-	}
-	
-	if (len2  == 0)
+
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
 		return (NULL);
-	p = (char **) malloc(sizeof(char) * len2 + 1);
-	if (p == NULL)
-		return (NULL);
-	for (i = 0; i <= len1; i++)
+
+	for (i = 0; i <= len; i++)
 	{
 		if (str[i] == ' ' || str[i] == '\0')
 		{
-			if (m)
+			if (c)
 			{
 				end = i;
-				q = (char *) malloc(sizeof(char) * (m + 1));
-				if (q == NULL)
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
 					return (NULL);
 				while (start < end)
-					*q++ = str[start++];
-				*q = '\0';
-				p[k] = q - m;
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
 				k++;
-				m = 0;
+				c = 0;
 			}
 		}
-		else if (m++ == 0)
+		else if (c++ == 0)
 			start = i;
 	}
-	p[k] = NULL;
-	return (p);
+
+	matrix[k] = NULL;
+
+	return (matrix);
 }

@@ -9,20 +9,28 @@
  */
 char **strtow(char *str)
 {
-	int len1 = 0, len2 = 0, i, k = 0, start, end, m = 0;
+	int len1 = 0, len2 = 0, f, i, k = 0, start, end, m = 0;
 	char **p, *q;
 
 	if (str == NULL)
 		return (NULL);
 	while (*(str + len1))
 	{
-		len1++;
-		if (*str == 32 && *(str + 1) != 32 && *(str + 1) != 0)
+		if (*(str + len1) == 32)
 		{
+			f = 0;
+		}
+		else if (f == 0)
+		{
+			f = 1;
 			len2++;
 		}
+		len1++;
 	}
-	p = (char **) malloc(sizeof(char) * len2);
+	
+	if (len2  == 0)
+		return (NULL);
+	p = (char **) malloc(sizeof(char) * len2 + 1);
 	if (p == NULL)
 		return (NULL);
 	for (i = 0; i <= len1; i++)

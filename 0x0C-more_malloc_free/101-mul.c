@@ -1,18 +1,13 @@
 #include "main.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * print - print Error, followed by a new line,
  * and exit with a status of 98
  */
 void print(void)
 {
-	_putchar(69);
-	_putchar(114);
-	_putchar(114);
-	_putchar(111);
-	_putchar(114);
-	_putchar(10);
+	printf("Error\n");
 	exit(98);
 }
 
@@ -24,12 +19,13 @@ void print(void)
  */
 int checker(char *n)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; n[i]; i++)
+	while (n[i])
 	{
 		if (n[i] < '0' || n[i] > '9')
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -72,9 +68,9 @@ int main(int argc, char *argv[])
 	result = malloc(sizeof(int) * len);
 	if (!result)
 		return (1);
-	for (i = 0; i <= (len1 + len2); i++)
+	for (i = 0; i <= len1 + len2; i++)
 		result[i] = 0;
-	for (len1 = (len1 - 1); len1 >= 0; len1--)
+	for (len1 = len1 - 1; len1 >= 0; len1--)
 	{
 		digit1 = n1[len1] - 48;
 		value = 0;

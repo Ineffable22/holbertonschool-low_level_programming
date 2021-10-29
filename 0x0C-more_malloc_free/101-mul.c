@@ -1,15 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
-/**
- * print - print Error, followed by a new line,
- * and exit with a status of 98
- */
-void print(void)
-{
-	printf("Error\n");
-	exit(98);
-}
 
 /**
  * checker - checks if a string contains a non-digit char
@@ -48,6 +38,21 @@ int _strlen(char *n)
 }
 
 /**
+ * print - print Error, followed by a new line,
+ * and exit with a status of 98
+ */
+void print(void)
+{
+	_putchar(69);
+	_putchar(114);
+	_putchar(114);
+	_putchar(111);
+	_putchar(114);
+	_putchar(10);
+	exit(98);
+}
+
+/**
  * main - multiplies two positive numbers
  * @argc: number of arguments
  * @argv: array of arguments
@@ -56,8 +61,8 @@ int _strlen(char *n)
  */
 int main(int argc, char *argv[])
 {
-	int i, len, len1, len2, *result, value, digit1, digit2, c = 0;
 	char *n1, *n2;
+	int i, len, len1, len2, *result, value, digit1, digit2, c = 0;
 
 	n1 = argv[1], n2 = argv[2];
 	if (argc != 3 || !checker(n1) || !checker(n2))
@@ -72,11 +77,11 @@ int main(int argc, char *argv[])
 		result[i] = 0;
 	for (len1 = len1 - 1; len1 >= 0; len1--)
 	{
-		digit1 = n1[len1] - 48;
+		digit1 = n1[len1] - '0';
 		value = 0;
 		for (len2 = _strlen(n2) - 1; len2 >= 0; len2--)
 		{
-			digit2 = n2[len2] - 48;
+			digit2 = n2[len2] - '0';
 			value += result[len1 + len2 + 1] + (digit1 * digit2);
 			result[len1 + len2 + 1] = value % 10;
 			value /= 10;
@@ -89,11 +94,11 @@ int main(int argc, char *argv[])
 		if (result[i])
 			c = 1;
 		if (c)
-			_putchar(result[i] + 48);
+			_putchar(result[i] + '0');
 	}
 	if (!c)
-		_putchar(48);
-	_putchar(10);
+		_putchar('0');
+	_putchar('\n');
 	free(result);
 	return (0);
 }

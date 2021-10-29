@@ -10,7 +10,6 @@ void print(void)
 	printf("Error\n");
 	exit(98);
 }
-
 /**
  * checker - checks if a string contains a non-digit char
  * @n: string to be evaluated

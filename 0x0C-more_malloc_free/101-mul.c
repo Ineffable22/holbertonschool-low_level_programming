@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-
 /**
  * print - print Error, followed by a new line,
  * and exit with a status of 98
@@ -31,7 +30,6 @@ char checker(char *n)
 			return (0);
 	}
 	return (1);
-
 }
 /**
  * _strlen - returns the length of a string
@@ -49,6 +47,7 @@ int _strlen(char *n)
 	}
 	return (i);
 }
+
 /**
  * main - multiplies two positive numbers
  * @argc: number of arguments

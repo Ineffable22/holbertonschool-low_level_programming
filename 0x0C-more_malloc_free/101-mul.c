@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+
 /**
  * print - print Error, followed by a new line,
  * and exit with a status of 98
@@ -14,6 +15,7 @@ void print(void)
 	_putchar(10);
 	exit(98);
 }
+
 /**
  * checker - checks if a string contains a non-digit char
  * @n: string to be evaluated
@@ -26,11 +28,12 @@ int checker(char *n)
 
 	for (i = 0; n[i]; i++)
 	{
-		if (n[i] < 48 || n[i] > 57)
+		if (n[i] < '0' || n[i] > '9')
 			return (0);
 	}
 	return (1);
 }
+
 /**
  * _strlen - returns the length of a string
  * @n: string to evaluate
@@ -63,7 +66,8 @@ int main(int argc, char *argv[])
 	n1 = argv[1], n2 = argv[2];
 	if (argc != 3 || !checker(n1) || !checker(n2))
 		print();
-	len1 = _strlen(n1), len2 = _strlen(n2);
+	len1 = _strlen(n1);
+	len2 = _strlen(n2);
 	len = len1 + len2 + 1;
 	result = malloc(sizeof(int) * len);
 	if (!result)

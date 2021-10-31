@@ -1,20 +1,19 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include "main.h"
 
 /**
- * is_digit - checks if a string contains a non-digit char
+ * _isdigit - checks if a string contains a non-digit char
  * @s: string to be evaluated
  *
  * Return: 0 if a non-digit is found, 1 otherwise
  */
-int is_digit(char *s)
+int _isdigit(char *s)
 {
 	int i = 0;
 
 	while (s[i])
 	{
-		if (s[i] < '0' || s[i] > '9')
+		if (s[i] < 48 || s[i] > 57)
 			return (0);
 		i++;
 	}
@@ -39,11 +38,17 @@ int _strlen(char *s)
 }
 
 /**
- * errors - handles errors for main
+ * print - print Error, followed by a new line,
+ * and exit with a status of 98
  */
-void errors(void)
+void print(void)
 {
-	printf("Error\n");
+	_putchar(69);
+	_putchar(114);
+	_putchar(114);
+	_putchar(111);
+	_putchar(114);
+	_putchar(10);
 	exit(98);
 }
 
@@ -56,43 +61,43 @@ void errors(void)
  */
 int main(int argc, char *argv[])
 {
-	char *s1, *s2;
-	int len1, len2, len, i, carry, num1, num2, *mul, a = 0;
+	char *num1, *num2;
+	int len1, len2, len, i, carry, digit1, digit2, *mul, a = 0;
 
-	s1 = argv[1], s2 = argv[2];
-	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-		errors();
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
+	num1 = argv[1], num2 = argv[2];
+	if (argc != 3 || !_isdigit(num1) || !_isdigit(num2))
+		print();
+	len1 = _strlen(num1);
+	len2 = _strlen(num2);
 	len = len1 + len2 + 1;
 	mul = malloc(sizeof(int) * len);
-	if (!mul)
+	if (mul == NULL)
 		return (1);
-	for (i = 0; i <= len1 + len2; i++)
+	for (i = 0; i < len1 + len2; i++)
 		mul[i] = 0;
-	for (len1 = len1 - 1; len1 >= 0; len1--)
+	for (len1 = _strlen(num1) - 1; len1 >= 0; len1--)
 	{
-		num1 = s1[len1] - '0';
-		carry = 0;
-		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
-		{
-			num2 = s2[len2] - '0';
-			carry += mul[len1 + len2 + 1] + (num1 * num2);
-			mul[len1 + len2 + 1] = carry % 10;
-			carry /= 10;
-		}
-		if (carry > 0)
-			mul[len1 + len2 + 1] += carry;
+	 	digit1 = num1[len1] - '0';
+	 	carry = 0;
+			for (len2 = _strlen(num2) - 1; len2 >= 0; len2--)
+			{
+				digit2 = num2[len2] - '0';
+				carry += mul[len1 + len2 + 1] + (digit1 * digit2);
+				mul[len1 + len2 + 1] = carry % 10;
+				carry /= 10;
+			}
+			if (carry > 0)
+				mul[len1 + len2 + 1] += carry;
 	}
 	for (i = 0; i < len - 1; i++)
 	{
-		if (mul[i])
-			a = 1;
-		if (a)
-			_putchar(mul[i] + '0');
+	 	if (mul[i])
+	 		a = 1;
+	 	if (a)
+	 		_putchar(mul[i] + '0');
 	}
 	if (!a)
-		_putchar('0');
+	 	_putchar('0');
 	_putchar('\n');
 	free(mul);
 	return (0);

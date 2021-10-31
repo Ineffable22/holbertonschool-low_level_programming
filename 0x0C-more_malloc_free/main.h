@@ -9,6 +9,6 @@ int *array_range(int min, int max);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void errors(void);
 int _strlen(char *s);
-int is_digit(char *s);
+int _isdigit(char *s);
 
 #endif

@@ -77,27 +77,27 @@ int main(int argc, char *argv[])
 		mul[i] = 0;
 	for (len1 = _strlen(num1) - 1; len1 >= 0; len1--)
 	{
-	 	digit1 = num1[len1] - '0';
-	 	carry = 0;
-			for (len2 = _strlen(num2) - 1; len2 >= 0; len2--)
-			{
-				digit2 = num2[len2] - '0';
-				carry += mul[len1 + len2 + 1] + (digit1 * digit2);
-				mul[len1 + len2 + 1] = carry % 10;
-				carry /= 10;
-			}
-			if (carry > 0)
-				mul[len1 + len2 + 1] += carry;
+		digit1 = num1[len1] - '0';
+		carry = 0;
+		for (len2 = _strlen(num2) - 1; len2 >= 0; len2--)
+		{
+			digit2 = num2[len2] - '0';
+			carry += mul[len1 + len2 + 1] + (digit1 * digit2);
+			mul[len1 + len2 + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			mul[len1 + len2 + 1] += carry;
 	}
 	for (i = 0; i < len - 1; i++)
 	{
-	 	if (mul[i])
-	 		a = 1;
-	 	if (a)
-	 		_putchar(mul[i] + '0');
+		if (mul[i])
+			a = 1;
+		if (a)
+			_putchar(mul[i] + '0');
 	}
 	if (!a)
-	 	_putchar('0');
+		_putchar('0');
 	_putchar('\n');
 	free(mul);
 	return (0);

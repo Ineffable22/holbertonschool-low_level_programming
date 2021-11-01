@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 		print();
 	len1 = _strlen(num1);
 	len2 = _strlen(num2);
-	len = len1 + len2 + 1;
+	len = len1 + len2;
 	mul = malloc(sizeof(int) * len);
 	if (mul == NULL)
 		return (1);

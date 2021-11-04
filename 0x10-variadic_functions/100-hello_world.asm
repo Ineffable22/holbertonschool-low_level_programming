@@ -1,8 +1,6 @@
 section	.text
 	global main
 
-section .text
-
 main:
 	mov	eax,0x4
 	mov	ebx,1
@@ -15,6 +13,5 @@ main:
 	int	0x80
 
 section		.data
-
 message			db	"Hello World!",0xa
 message_length		equ	$-message

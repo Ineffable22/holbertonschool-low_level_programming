@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _pow_recursion - returns the value of x raised to the power of y
  * @x: value to raise
@@ -59,7 +58,7 @@ unsigned int binary_to_uint(const char *b)
 	int i = 0;
 	unsigned int result = 0, value = 0;
 
-	if (*b == '\0')
+	if (!b || !(*b))
 		return (0);
 	if (checker(b) == 0)
 		return (0);

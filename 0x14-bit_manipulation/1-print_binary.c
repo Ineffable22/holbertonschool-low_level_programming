@@ -26,7 +26,7 @@ void print_binary(unsigned long int n)
 		variable++;
 	if (n == 0)
 		_putchar(48);
-	for (i = variable - 1; i >= 0; i--)
+	for (i = variable - 1; i >= 0 && n <= _pow_recursion(2, 32); i--)
 	{
 		if (n == _pow_recursion(2, i))
 		{

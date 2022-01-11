@@ -6,16 +6,16 @@ int rand()
 
 	num++;
 	if (num == 0)
-		return 8;
+		return 9;
 	if (num == 1)
 		return 8;
 	if (num == 2)
-		return 7;
+		return 10;
 	if (num == 3)
-		return 9;
+		return 24;
 	if (num == 4)
-		return 23;
+		return 75;
 	if (num == 5)
-		return 74;
+		return 9;
 	return (num * num % 30000);
 }

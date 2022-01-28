@@ -53,6 +53,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	node->value = strdup(value);
 	node->next = NULL;
 	sset_check(ptr, &node);
+	node->snext = NULL;
+	node->sprev = NULL;
 	sort_check(ht, node);
 	return (1);
 }

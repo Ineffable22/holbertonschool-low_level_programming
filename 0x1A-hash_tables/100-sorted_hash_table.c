@@ -14,7 +14,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 	if (hash == NULL)
 		return (NULL);
 	hash->size = size;
-	hash->array = malloc(sizeof(shash_table_t *) * size);
+	hash->array = malloc(sizeof(shash_node_t *) * size);
 	if (hash->array == NULL)
 	{
 		free(hash);
@@ -170,7 +170,7 @@ void shash_table_print(const shash_table_t *ht)
 	shash_node_t *ptr = NULL;
 	char flag = 0;
 
-	if (ht == NULL)
+	if (ht == NULL || !(ht->array))
 		return;
 
 	ptr = ht->shead;
@@ -197,7 +197,7 @@ void shash_table_print_rev(const shash_table_t *ht)
 	shash_node_t *ptr = NULL;
 	char flag = 0;
 
-	if (ht == NULL)
+	if (ht == NULL || !(ht->array))
 		return;
 
 	ptr = ht->stail;

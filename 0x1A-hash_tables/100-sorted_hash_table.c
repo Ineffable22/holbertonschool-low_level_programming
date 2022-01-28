@@ -20,6 +20,8 @@ shash_table_t *shash_table_create(unsigned long int size)
 		free(hash);
 		return (NULL);
 	}
+	hash_table->shead = NULL;
+	hash_table->stail = NULL;
 	for (i = 0; i < size; i++)
 		hash->array[i] = NULL;
 	return (hash);
@@ -51,8 +53,46 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	node->value = strdup(value);
 	node->next = NULL;
 	sset_check(ptr, &node);
-
+	sort_check(ht, node);
 	return (1);
+}
+
+/**
+ * sort_check - Adds an element to the hash table
+ * @ht: Is the hash table you want to add or update the key/value to
+ * @node: node to vincule
+ *
+ * Return: Nothing
+ */
+void sort_check(shash_table_t *ht, shash_node_t *node)
+{
+	shash_node_t *current = NULL, *tmp = NULL;
+
+	if (!(ht->shead) || strcmp(node->key, ht->shead->key) <= 0)
+	{
+		node->snext = ht->shead;
+		if (ht->shead)
+			ht->shead->sprev = node;
+		if (!(ht->stail))
+			ht->stail = node;
+		ht->shead = node;
+		return;
+	}
+
+	current = ht->shead;
+	tmp = ht->shead->snext;
+	while ((tmp) && strcmp(node->key, tmp->key) > 0)
+	{
+		current = current->next;
+		tmp = tmp->next;
+	}
+	current->snext = node;
+	node->snext = tmp;
+	node->sprev = current;
+	if (tmp)
+		tmp->sprev = node;
+	else
+		ht->stail = node;
 }
 
 /**

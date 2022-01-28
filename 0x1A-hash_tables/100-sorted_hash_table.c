@@ -10,7 +10,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 	shash_table_t *hash = NULL;
 	unsigned long int i = 0;
 
-	hash = malloc(sizeof(hash_table_t));
+	hash = malloc(sizeof(shash_table_t));
 	if (hash == NULL)
 		return (NULL);
 	hash->size = size;
@@ -20,8 +20,8 @@ shash_table_t *shash_table_create(unsigned long int size)
 		free(hash);
 		return (NULL);
 	}
-	hash_table->shead = NULL;
-	hash_table->stail = NULL;
+	hash->shead = NULL;
+	hash->stail = NULL;
 	for (i = 0; i < size; i++)
 		hash->array[i] = NULL;
 	return (hash);
@@ -42,7 +42,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !key || !strcmp(key, "") || !value)
 		return (0);
-	node = malloc(sizeof(hash_node_t));
+	node = malloc(sizeof(shash_node_t));
 	if (node == NULL)
 	{
 		return (0);
@@ -83,8 +83,8 @@ void sort_check(shash_table_t *ht, shash_node_t *node)
 	tmp = ht->shead->snext;
 	while ((tmp) && strcmp(node->key, tmp->key) > 0)
 	{
-		current = current->next;
-		tmp = tmp->next;
+		current = current->snext;
+		tmp = tmp->snext;
 	}
 	current->snext = node;
 	node->snext = tmp;
@@ -166,25 +166,22 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
  */
 void shash_table_print(const shash_table_t *ht)
 {
-	unsigned long int i = 0;
+	/*unsigned long int i = 0;*/
 	shash_node_t *ptr = NULL;
 	char flag = 0;
 
 	if (ht == NULL)
 		return;
 
+	ptr = ht->shead;
 	printf("{");
-	for (i = 0; i < ht->size; i++)
+	while (ptr)
 	{
-		ptr = ht->array[i];
-		while (ptr != NULL)
-		{
-			if (flag == 1)
-				printf(", ");
-			printf("'%s': '%s'", ptr->key, ptr->value);
-			flag = 1;
-			ptr = ptr->next;
-		}
+		if (flag == 1)
+			printf(", ");
+		printf("'%s': '%s'", ptr->key, ptr->value);
+		ptr = ptr->snext;
+		flag = 1;
 	}
 	printf("}\n");
 }
@@ -197,25 +194,21 @@ void shash_table_print(const shash_table_t *ht)
  */
 void shash_table_print_rev(const shash_table_t *ht)
 {
-	unsigned long int i = 0;
 	shash_node_t *ptr = NULL;
 	char flag = 0;
 
 	if (ht == NULL)
 		return;
 
+	ptr = ht->stail;
 	printf("{");
-	for (i = ht->size; i > 0; i--)
+	while (ptr)
 	{
-		ptr = ht->array[i];
-		while (ptr != NULL)
-		{
-			if (flag == 1)
-				printf(", ");
-			printf("'%s': '%s'", ptr->key, ptr->value);
-			flag = 1;
-			ptr = ptr->next;
-		}
+		if (flag == 1)
+			printf(", ");
+		printf("'%s': '%s'", ptr->key, ptr->value);
+		ptr = ptr->sprev;
+		flag = 1;
 	}
 	printf("}\n");
 }

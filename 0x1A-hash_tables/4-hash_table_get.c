@@ -14,11 +14,11 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 
 	if (ht == NULL || key == NULL || !strcmp(key, ""))
 		return (NULL);
-	index = key_index((unsigned char *)key, ht->size);
+	index = key_index((const unsigned char *)key, ht->size);
 	carry = ht->array[index];
 	while (carry)
 	{
-		if (strcmp(carry->key, key) == 0)
+		if (strcmp(carry->key, (char *)key) == 0)
 			return (carry->value);
 		carry = carry->next;
 	}

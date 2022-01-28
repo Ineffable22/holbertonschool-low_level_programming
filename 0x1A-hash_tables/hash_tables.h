@@ -55,7 +55,6 @@ typedef struct shash_node_s
 	struct shash_node_s *snext;
 } shash_node_t;
 
-
 /**
  * struct shash_table_s - Sorted hash table data structure
  *
@@ -79,7 +78,6 @@ typedef struct shash_table_s
 hash_table_t *hash_table_create(unsigned long int size);
 unsigned long int hash_djb2(const unsigned char *str);
 unsigned long int key_index(const unsigned char *key, unsigned long int size);
-unsigned long int key_index(const unsigned char *key, unsigned long int size);
 int hash_table_set(hash_table_t *ht, const char *key, const char *value);
 void set_check(hash_node_t **head, hash_node_t **node);
 char *hash_table_get(const hash_table_t *ht, const char *key);
@@ -95,5 +93,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key);
 void shash_table_print(const shash_table_t *ht);
 void shash_table_print_rev(const shash_table_t *ht);
 void shash_table_delete(shash_table_t *ht);
+void sort_check(shash_table_t *ht, shash_node_t *node);
+void free_linked_list(shash_node_t *head);
 
 #endif

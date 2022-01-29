@@ -37,25 +37,38 @@ shash_table_t *shash_table_create(unsigned long int size)
  */
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
-	shash_node_t *node = NULL, **ptr = NULL;
-	unsigned long int index = 0;
+	shash_node_t *hash_node = NULL;
+	shash_node_t *new_node = NULL;
+	char *new_key = NULL;
+	char *new_value = NULL;
+	unsigned long int hash_idx;
 
-	if (!ht || !key || !strcmp(key, "") || !value)
+	if (!key || !ht || !value)
 		return (0);
-	node = malloc(sizeof(shash_node_t));
-	if (node == NULL)
+	hash_idx = key_index((const unsigned char *)key, ht->size);
+	hash_node = ht->array[hash_idx];
+	new_value = strdup(value);
+	while (hash_node)
 	{
-		return (0);
+		if (strcmp(hash_node->key, key) == 0)
+		{
+			free(hash_node->value);
+			hash_node->value = new_value;
+			return (1);
+		}
+		hash_node = hash_node->next;
 	}
-	index = key_index((unsigned char *)key, ht->size);
-	ptr = &(ht->array[index]);
-	node->key = strdup(key);
-	node->value = strdup(value);
-	node->next = NULL;
-	sset_check(ptr, &node);
-	node->snext = NULL;
-	node->sprev = NULL;
-	sort_check(ht, node);
+	new_key = strdup(key);
+	new_node = malloc(sizeof(shash_node_t));
+	if (new_node == NULL)
+		return (0);
+	new_node->value = new_value;
+	new_node->key = new_key;
+	new_node->next = ht->array[hash_idx];
+	ht->array[hash_idx] = new_node;
+	new_node->sprev = NULL;
+	new_node->snext = NULL;
+	sort_check(ht, new_node);
 	return (1);
 }
 
@@ -98,45 +111,6 @@ void sort_check(shash_table_t *ht, shash_node_t *node)
 }
 
 /**
- * sset_check - set and check nodes
- * @head: pointing to hash_node in the hash table
- * @node: node to add in the index of the hash table
- *
- * Return: Nothing
- */
-void sset_check(shash_node_t **head, shash_node_t **node)
-{
-	shash_node_t *tail = *head;
-
-	if (!head)
-	{
-		free((*node)->key);
-		free((*node)->value);
-		free(*node);
-		return;
-	}
-	if (*head)
-	{
-		while (tail)
-		{
-			if (strcmp(tail->key, (*node)->key) == 0)
-			{
-				free(tail->value);
-				tail->value = strdup((*node)->value);
-				free((*node)->value);
-				free((*node)->key);
-				free(*node);
-				return;
-			}
-			tail = tail->next;
-		}
-	}
-
-	(*node)->next = *head;
-	*head = *node;
-}
-
-/**
  * shash_table_get - Retrieves a value associated with a key
  * @ht: Is the hash table you want to look into
  * @key: Is the key you are looking for
@@ -173,7 +147,7 @@ void shash_table_print(const shash_table_t *ht)
 	shash_node_t *ptr = NULL;
 	char flag = 0;
 
-	if (ht == NULL || !(ht->array))
+	if (!ht || !(ht->array))
 		return;
 
 	ptr = ht->shead;

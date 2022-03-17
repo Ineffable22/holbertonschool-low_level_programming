@@ -13,19 +13,19 @@ def island_perimeter(grid):
             try:
                 top = grid[row - 1][col]
             except:
-                top = 0
+                top = 1
             try:
                 bot = grid[row + 1][col]
             except:
-                bot = 0
+                bot = 1
             try:
                 left = grid[row][col - 1]
             except:
-                left = 0
+                left = 1
             try:
                 right = grid[row][col + 1]
             except:
-                right = 0
+                right = 1
             if top == 0 and grid[row][col] == 1:
                 count += 1
             if bot == 0 and grid[row][col] == 1:

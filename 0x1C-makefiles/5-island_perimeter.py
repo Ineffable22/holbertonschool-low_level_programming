@@ -5,23 +5,26 @@
 def island_perimeter(grid):
     """ Returns the perimeter of the island described in grid """
     count = 0
-    for row in range(len(grid)):
-        for col in range(len(grid[row])):
+    max_grid = len(grid) > 100 if len(grid) == 100 else len(grid)
+    for row in range(max_grid):
+        max_row = len(grid[row]) > 100 \
+            if len(grid[row]) == 100 else len(grid[row])
+        for col in range(max_row):
             try:
                 top = grid[row - 1][col]
-            except ValueError:
+            except:
                 top = 0
             try:
                 bot = grid[row + 1][col]
-            except ValueError:
+            except:
                 bot = 0
             try:
                 left = grid[row][col - 1]
-            except ValueError:
+            except:
                 left = 0
             try:
                 right = grid[row][col + 1]
-            except ValueError:
+            except:
                 right = 0
             if top == 0 and grid[row][col] == 1:
                 count += 1

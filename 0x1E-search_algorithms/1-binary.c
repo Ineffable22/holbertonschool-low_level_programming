@@ -36,7 +36,6 @@ void printArray(int *array, size_t start, size_t end)
 int binary_search(int *array, size_t size, int value)
 {
 	size_t start = 0, end = size - 1, mid = 0;
-	int i = 0;
 
 	if (!array)
 		return (-1);
@@ -53,11 +52,6 @@ int binary_search(int *array, size_t size, int value)
 			end = mid - 1;
 		else if  (value > array[mid])
 			start = mid + 1;
-
-
-		if (i == 5)
-			break;
-		i++;
 	}
 	printArray(array, start, end);
 	return (-1);

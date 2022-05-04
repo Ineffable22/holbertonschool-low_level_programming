@@ -54,5 +54,7 @@ int binary_search(int *array, size_t size, int value)
 			start = mid + 1;
 	}
 	printArray(array, start, end);
+	if (value == array[end])
+		return (end);
 	return (-1);
 }

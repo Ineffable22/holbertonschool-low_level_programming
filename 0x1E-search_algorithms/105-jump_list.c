@@ -12,7 +12,7 @@
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t step = 0, i = 0;
+	int step = 0, i = 0;
 	listint_t *tmp = NULL;
 
 	if (list && size > 0)

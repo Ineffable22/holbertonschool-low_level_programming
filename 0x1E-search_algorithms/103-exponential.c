@@ -1,6 +1,10 @@
 #include "search_algos.h"
 #include <math.h>
 
+
+int binary_search_v2(int *array, int value, size_t start, size_t end);
+void printArray(int *array, size_t start, size_t end);
+
 /**
  * printArray - print array
  * @array: pointer to the first element of the array
@@ -27,6 +31,39 @@ void printArray(int *array, size_t start, size_t end)
 }
 
 /**
+ * binary_search_v2 - searches for a value in an array of integers using
+ * the Linear search algorithm
+ * @array: pointer to the first element of the array
+ * @value: value to search for
+ * @start: index to start
+ * @end: index to end
+ *
+ * Return: the first index where value is located
+ */
+int binary_search_v2(int *array, int value, size_t start, size_t end)
+{
+	size_t mid = 0;
+
+	while (start < end)
+	{
+		printArray(array, start, end);
+		mid = (start + end) / 2;
+		if (value == array[mid])
+		{
+			return (mid);
+		}
+		else if (value < array[mid])
+			end = mid - 1;
+		else if  (value > array[mid])
+			start = mid + 1;
+	}
+	printArray(array, start, end);
+	if (value == array[end])
+		return (end);
+	return (-1);
+}
+
+/**
  * exponential_search - Searches for a value in a sorted array of integers
  * using the Exponential search algorithm
  * @array: is a pointer to the first element of the array to search
@@ -37,9 +74,9 @@ void printArray(int *array, size_t start, size_t end)
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t tmp = 1, start = 0, end = size - 1, mid = 0;
+	size_t tmp = 1, start = 0, end = size - 1;
 
-	if (array)
+	if (array && size > 0)
 	{
 		while (tmp < end)
 		{
@@ -52,22 +89,7 @@ int exponential_search(int *array, size_t size, int value)
 		}
 		printf("Value found between indexes [%ld] and [%ld]\n", start,
 		       tmp < end ? tmp : end);
-		while (start < end)
-		{
-			printArray(array, start, end);
-			mid = (start + end) / 2;
-			if (value == array[mid])
-			{
-				return (mid);
-			}
-			else if (value < array[mid])
-				end = mid - 1;
-			else if  (value > array[mid])
-				start = mid + 1;
-		}
-		printArray(array, start, end);
-		if (value == array[end])
-			return (end);
+		return (binary_search_v2(array, value, start, tmp < end ? tmp : end));
 	}
 	return (-1);
 }

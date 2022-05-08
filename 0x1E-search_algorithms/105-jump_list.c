@@ -18,19 +18,20 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	if (list && size > 0)
 	{
 		step = sqrt(size);
-		while (j < size && value > list->n)
+		while (j < size && value > list->n && list->next)
 		{
 			i = j;
 			tmp = list;
-			for (j = i; j < i + step; j++, list = list->next)
+			for (j = i; j < i + step && list->next; j++, list = list->next)
 			{}
-			printf("Value checked array[%ld] = [%d]\n", j, list ? list->n : 99);
+			printf("Value checked array[%ld] = [%d]\n", list->index,
+			       list ? list->n : 99);
 		}
 		printf("Value found between indexes [%ld] and [%ld]\n", i, j);
 		list = tmp;
 		while (i < size)
 		{
-			printf("Value checked array[%ld] = [%d]\n", i, list->n);
+			printf("Value checked array[%ld] = [%d]\n", list->index, list->n);
 			if (value == list->n)
 				return (list);
 			i += 1;

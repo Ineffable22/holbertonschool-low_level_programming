@@ -32,7 +32,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		{
 			printf("Value checked array[%ld] = [%d]\n", tmp->index, tmp->n);
 			if (value == tmp->n)
-				return (list);
+				return (tmp);
 			i += 1;
 			tmp = tmp->next;
 		}
